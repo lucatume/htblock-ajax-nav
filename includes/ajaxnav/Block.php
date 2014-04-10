@@ -1,6 +1,8 @@
 <?php
 namespace ajaxnav;
 
+use ajaxnav\AJAXNavMenu;
+
 class Block extends \HeadwayBlockAPI {
 
     public $id = 'ajaxnav';
@@ -50,24 +52,7 @@ class Block extends \HeadwayBlockAPI {
     // }
 
     public function content($block) {
-            $args = array(
-                'theme_location' => 'navigation_block_2',
-                'menu' => '',
-                'container' => 'nav',
-                'container_class' => 'menu-ajax-container',
-                'container_id' => '',
-                'menu_class' => 'menu',
-                'menu_id' => '',
-                'echo' => true,
-                'fallback_cb' => 'wp_page_menu',
-                'before' => '',
-                'after' => '',
-                'link_before' => '',
-                'link_after' => '',
-                'items_wrap' => '<ul id = "%1$s" class = "%2$s">%3$s</ul>',
-                'depth' => 2,
-                'walker' => ''
-            );
-            wp_nav_menu( $args );
+        AJAXNavMenu::on('navigation_block_2')->show();
     }
+
 }
