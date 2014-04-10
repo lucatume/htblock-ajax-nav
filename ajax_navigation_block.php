@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: AJAX Nav Block
+ * Plugin Name: AJAX Navigation Block
  * Plugin URI:  http://theaveragedev.com
- * Description: Adds an AJAX-based navigation block to Headway visual theme editor
+ * Description: Adds the AJAX Navigation Block to Headway visual editor.
  * Version:     0.1.0
  * Author:      theAverageDev (Luca Tumedei)
  * Author URI:  http://theaveragedev.com

@@ -1,7 +1,7 @@
 {
-  "name": "ajax-nav-block",
-  "title": "AJAX Nav Block",
-  "description": "Adds an AJAX-based navigation block to Headway visual theme editor",
+  "name": "ajax-navigation-block",
+  "title": "AJAX Navigation Block",
+  "description": "Adds the AJAX Navigation Block to Headway visual editor.",
   "version": "0.1.0",
   "homepage": "http://theaveragedev.com",
   "author": {

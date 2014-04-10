@@ -4,9 +4,9 @@ namespace ajaxnav;
 class Block extends \HeadwayBlockAPI {
 
     public $id = 'ajaxnav';
-    public $name = 'AJAX Nav Block';
+    public $name = 'AJAX Navigation Block';
     public $options_class = '\ajaxnav\BlockOptions';
-    public $description = 'Adds an AJAX-based navigation block to Headway visual theme editor';
+    public $description = 'Adds the AJAX Navigation Block to Headway visual editor.';
 
     // public static function init_action($block_id, $block) 
     // {

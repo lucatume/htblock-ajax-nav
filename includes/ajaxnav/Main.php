@@ -26,7 +26,7 @@ class Main
         $updater = new \HeadwayUpdaterAPI(array(
             'slug' => 'ajaxnav',
             'path' => plugin_basename(__FILE__),
-            'name' => 'AJAX Nav Block',
+            'name' => 'AJAX Navigation Block',
             'type' => 'block',
             'current_version' => AJAXNAV_BLOCK_VERSION
             ));
