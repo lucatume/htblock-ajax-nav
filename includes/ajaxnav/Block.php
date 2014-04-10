@@ -2,6 +2,7 @@
 namespace ajaxnav;
 
 use ajaxnav\AJAXNavMenu;
+use tad\wrappers\headway\BlockSettings as Settings;
 
 class Block extends \HeadwayBlockAPI {
 
@@ -10,20 +11,18 @@ class Block extends \HeadwayBlockAPI {
     public $options_class = '\ajaxnav\BlockOptions';
     public $description = 'Adds an AJAX-based navigation block to Headway visual theme editor';
 
-    // public static function init_action($block_id, $block) 
-    // {
-
-    // }
-
-
-    public static function enqueue_action($block_id, $block, $original_block = null)
+    public static function init_action($block_id, $block) 
     {
-        // enqueue the block style
-        wp_enqueue_style( 
-            'ajaxnav', 
-            AJAXNAV_BLOCK_URL . 'assets/css/ajax_nav_block.css'
-            );
+        // register the nav menu with the theme
+        // blatant copy of the default navigation block
+        $name = \HeadwayBlocksData::get_block_name($block) . ' &mdash; ' . 'Layout: ' . \HeadwayLayout::get_name($block['layout']);
+        register_nav_menu('navigation_block_' . $block_id, $name);
     }
+
+
+    // public static function enqueue_action($block_id, $block, $original_block = null)
+    // {
+    // }
 
 
     // public static function dynamic_css($block_id, $block, $original_block = null)
@@ -52,7 +51,7 @@ class Block extends \HeadwayBlockAPI {
     // }
 
     public function content($block) {
-        AJAXNavMenu::on('navigation_block_2')->show();
+        $themeLocation = 'navigation_block_' . $block['id'];
+        AJAXNavMenu::on($themeLocation)->show();
     }
-
 }

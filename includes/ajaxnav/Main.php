@@ -28,7 +28,7 @@ class Main
             'path' => plugin_basename(__FILE__),
             'name' => 'AJAX Navigation Block',
             'type' => 'block',
-            'current_version' => AJAXNAV_BLOCK_VERSION
+            'current_version' => AJAXNAV_VERSION
             ));
     }
 }

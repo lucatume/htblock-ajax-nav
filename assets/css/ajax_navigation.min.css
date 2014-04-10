@@ -1,0 +1,5 @@
+/*! AJAX Navigation Block - v0.1.0
+ * http://theaveragedev.com
+ * Copyright (c) 2014; * Licensed GPLv2+ */
+
+nav.menu-ajax-container{background-color:transparent}nav.menu-ajax-container .menu-item{display:block}nav.menu-ajax-container .menu-item a{background-color:#c21f26;-moz-box-sizing:border-box;box-sizing:border-box;font-weight:700;letter-spacing:.4em;border-style:solid;border-width:0 25px;border-image:url(../../images/field_border.png) 0 40 0 48 fill round;background-color:transparent;color:#fff;text-decoration:none;line-height:2em;text-align:center;display:block;width:100%;height:2em}nav.menu-ajax-container .menu-item ul.sub-menu{max-height:0;overflow:hidden;-webkit-transition:max-height .5s;transition:max-height .5s}nav.menu-ajax-container .menu-item ul.sub-menu li.menu-item:last-child{margin-bottom:1em}nav.menu-ajax-container .menu-item ul.sub-menu li.menu-item:before{content:'';width:0;border:1px solid #c21f26;height:2em;position:relative;left:50%}nav.menu-ajax-container .menu-item:active ul.sub-menu,nav.menu-ajax-container .menu-item:hover ul.sub-menu,nav.menu-ajax-container .menu-item:focus ul.sub-menu{max-height:20em;overflow:visible}
