@@ -5,63 +5,39 @@
  * Copyright (c) 2014 theAverageDev (Luca Tumedei)
  * Licensed under the GPLv2+ license.
  */
- $bgColor: #c21f26; 
- $white: #fff;
- $menuItemBorderImage: url(../../images/field_border.png);
- $breakpointSmall: 600px;
- $breakpointMedium: 782px;
- $breakpointLarge: 1024px;
- $subMenuItemWidth: 95%;
- $menuItemHeight: 2em;
 
- nav.menu-ajax-container {
-    background-color: transparent;
+// import Foundation media queries
+@import 'foundation_media_queries';
 
-    .menu-item{
-        display: block;
-        a {
-            background-color: $bgColor;
-            box-sizing: border-box;
-            font-weight: bold;
-            letter-spacing: 0.4em;
-            border-style: solid;
-            border-width: 0px 25px;
-            -moz-border-image: $menuItemBorderImage 0 40 0 48 round;
-            -webkit-border-image: $menuItemBorderImage 0 40 0 48 round;
-            -o-border-image: $menuItemBorderImage 0 40 0 48 round;
-            border-image: $menuItemBorderImage 0 40 0 48 fill round;
-            background-color: transparent;
-            color: $white;
-            text-decoration: none;
-            line-height: $menuItemHeight;
-            text-align: center;
-            display: block;
-            width: 100%;
-            height: $menuItemHeight;
+// variables
+$itemHeight: 2em;
+
+nav.menu-ajax-container *{
+    box-sizing: border-box;
+}
+
+nav.menu-ajax-container ul.menu {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    li.menu-item{
+        height: $itemHeight;
+        flex-grow: 1;
+        min-width: 25%;
+        text-align: center;
+        @media #{$small-only} {
+            min-width: 100%;
+        }
+        @media #{$medium-only} {
+            min-width: 50%;
         }
         ul.sub-menu{
-            max-height: 0em;
-            overflow: hidden;
-            transition: max-height 0.5s;
             li.menu-item{
-                &:last-child{
-                    margin-bottom: $menuItemHeight / 2;
-                }
-                &:before{
-                    content: '';
-                    width: 0em;
-                    border: 1px solid $bgColor;
-                    height: $menuItemHeight;
-                    position: relative;
-                    left: 50%; 
-                }
+                position: absolute;
+                left: -999999px;
             }
         }
-        &:active, &:hover, &:focus{
-            ul.sub-menu{
-            max-height: 20em;
-            overflow: visible;
-        }
-        }
+        // to stick with the use pattern the menus will open on click
+        // and not on hover
     }
 }

@@ -5,41 +5,39 @@
  * Copyright (c) 2014 theAverageDev (Luca Tumedei)
  * Licensed under the GPLv2+ license.
  */
-nav.menu-ajax-container {
-  background-color: transparent; }
-  nav.menu-ajax-container .menu-item {
-    display: block; }
-    nav.menu-ajax-container .menu-item a {
-      background-color: #c21f26;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-      font-weight: bold;
-      letter-spacing: 0.4em;
-      border-style: solid;
-      border-width: 0px 25px;
-      border-image: url(../../images/field_border.png) 0 40 0 48 fill round;
-      background-color: transparent;
-      color: white;
-      text-decoration: none;
-      line-height: 2em;
-      text-align: center;
-      display: block;
-      width: 100%;
-      height: 2em; }
-    nav.menu-ajax-container .menu-item ul.sub-menu {
-      max-height: 0em;
-      overflow: hidden;
-      -webkit-transition: max-height 0.5s;
-      transition: max-height 0.5s; }
-      nav.menu-ajax-container .menu-item ul.sub-menu li.menu-item:last-child {
-        margin-bottom: 1em; }
-      nav.menu-ajax-container .menu-item ul.sub-menu li.menu-item:before {
-        content: '';
-        width: 0em;
-        border: 1px solid #c21f26;
-        height: 2em;
-        position: relative;
-        left: 50%; }
-    nav.menu-ajax-container .menu-item:active ul.sub-menu, nav.menu-ajax-container .menu-item:hover ul.sub-menu, nav.menu-ajax-container .menu-item:focus ul.sub-menu {
-      max-height: 20em;
-      overflow: visible; }
+/* 0, 640px */
+/* 641px, 1024px */
+/* 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+nav.menu-ajax-container * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+nav.menu-ajax-container ul.menu {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap; }
+  nav.menu-ajax-container ul.menu li.menu-item {
+    height: 2em;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    min-width: 25%;
+    text-align: center; }
+    @media only screen and (max-width: 40em) {
+      nav.menu-ajax-container ul.menu li.menu-item {
+        min-width: 100%; } }
+    @media only screen and (min-width: 40.063em) and (max-width: 64em) {
+      nav.menu-ajax-container ul.menu li.menu-item {
+        min-width: 50%; } }
+    nav.menu-ajax-container ul.menu li.menu-item ul.sub-menu li.menu-item {
+      position: absolute;
+      left: -999999px; }
