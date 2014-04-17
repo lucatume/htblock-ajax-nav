@@ -3,6 +3,7 @@ namespace ajaxnav;
 
 use ajaxnav\AJAXNavMenu;
 use tad\wrappers\headway\BlockSettings as Settings;
+use tad\utils\Script;
 
 class Block extends \HeadwayBlockAPI {
 
@@ -20,9 +21,13 @@ class Block extends \HeadwayBlockAPI {
     }
 
 
-    // public static function enqueue_action($block_id, $block, $original_block = null)
-    // {
-    // }
+    public static function enqueue_action($block_id, $block, $original_block = null)
+    {
+        $handle = 'ajaxnav';
+        $src = Script::suffix(AJAXNAV_URL . 'assets/js/ajax_navigation.js');
+        $deps = array('jquery');
+        wp_enqueue_script($handle, $src, $deps);
+    }
 
 
     // public static function dynamic_css($block_id, $block, $original_block = null)
