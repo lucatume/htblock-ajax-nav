@@ -10,6 +10,7 @@ module.exports = function(grunt) {
             ajax_navigation: {
                 src: [
                     'assets/js/vendor/spin/spin.min.js',
+                    'assets/js/vendor/urlInternal/urlInternal.min.js',
                     'assets/js/src/ajax_navigation.js'
                 ],
                 dest: 'assets/js/ajax_navigation.js'
