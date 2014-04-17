@@ -34,9 +34,9 @@ class AJAXNavMenu
             'theme_location' => $this->themeLocation,
             'menu' => '',
             'container' => 'nav',
-            'container_class' => 'menu-ajax-container',
+            'container_class' => '',
             'container_id' => '',
-            'menu_class' => 'menu',
+            'menu_class' => 'menu-ajax',
             'menu_id' => '',
             'echo' => true,
             'fallback_cb' => 'wp_page_menu',
@@ -44,9 +44,9 @@ class AJAXNavMenu
             'after' => '',
             'link_before' => '',
             'link_after' => '',
-            'items_wrap' => '<ul id = "%1$s" class = "%2$s">%3$s</ul>',
+            'items_wrap' => '<div class = "menu-ajax">%3$s</div>',
             'depth' => 2,
-            'walker' => ''
+            'walker' => new \ajaxnav\WalkerAjaxNavMenu()
             );
 
         $this->functions->wp_nav_menu( $args );
