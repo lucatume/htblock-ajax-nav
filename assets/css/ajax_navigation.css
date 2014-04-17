@@ -10,34 +10,64 @@
 /* 1025px, 1440px */
 /* 1441px, 1920px */
 /* 1921px */
-nav.menu-ajax-container * {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box; }
-
-nav.menu-ajax-container ul.menu {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+nav .menu-ajax {
+  background-color: paleturquoise;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
-  flex-wrap: wrap; }
-  nav.menu-ajax-container ul.menu li.menu-item {
-    height: 2em;
-    -webkit-box-flex: 1;
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
+  flex-wrap: wrap;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-align-content: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start; }
+  nav .menu-ajax * {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  nav .menu-ajax .menu-item {
+    position: relative;
     min-width: 25%;
-    text-align: center; }
+    min-height: 2em;
+    line-height: 2em;
+    cursor: pointer;
+    text-align: center;
+    background-color: paleturquoise;
+    color: palevioletred; }
     @media only screen and (max-width: 40em) {
-      nav.menu-ajax-container ul.menu li.menu-item {
+      nav .menu-ajax .menu-item {
         min-width: 100%; } }
     @media only screen and (min-width: 40.063em) and (max-width: 64em) {
-      nav.menu-ajax-container ul.menu li.menu-item {
-        min-width: 50%; } }
-    nav.menu-ajax-container ul.menu li.menu-item ul.sub-menu li.menu-item {
-      position: absolute;
-      left: -999999px; }
+      nav .menu-ajax .menu-item {
+        min-width: 33.3333333%; } }
+    nav .menu-ajax .menu-item a {
+      display: block;
+      text-decoration: none;
+      color: palevioletred; }
+      nav .menu-ajax .menu-item a.closeMenu {
+        display: none; }
+    nav .menu-ajax .menu-item:target .sub-menu {
+      max-height: 1000px; }
+    nav .menu-ajax .menu-item:target a.openMenu {
+      display: none; }
+    nav .menu-ajax .menu-item:target a.closeMenu {
+      display: block; }
+    @media only screen and (min-width: 40.063em) {
+      nav .menu-ajax .menu-item:hover .sub-menu {
+        max-height: 1000px; } }
+  nav .menu-ajax .sub-menu {
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: all 0.4s;
+    transition: all 0.4s; }
+    @media only screen and (min-width: 40.063em) {
+      nav .menu-ajax .sub-menu {
+        position: absolute;
+        width: 100%; } }

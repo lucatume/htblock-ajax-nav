@@ -7,37 +7,70 @@
  */
 
 // import Foundation media queries
-@import 'foundation_media_queries';
+@import "foundation_media_queries";
 
 // variables
 $itemHeight: 2em;
 
-nav.menu-ajax-container *{
-    box-sizing: border-box;
-}
-
-nav.menu-ajax-container ul.menu {
-    box-sizing: border-box;
+nav .menu-ajax {
+    background-color: paleturquoise;
+    * {
+        box-sizing: border-box;
+    }
     display: flex;
     flex-wrap: wrap;
-    li.menu-item{
-        height: $itemHeight;
-        flex-grow: 1;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+    .menu-item {
+        position: relative;
         min-width: 25%;
-        text-align: center;
         @media #{$small-only} {
             min-width: 100%;
         }
         @media #{$medium-only} {
-            min-width: 50%;
+            min-width: 33.3333333%;
         }
-        ul.sub-menu{
-            li.menu-item{
-                position: absolute;
-                left: -999999px;
+        min-height: $itemHeight;
+        line-height: $itemHeight;
+        cursor: pointer;
+        text-align: center;
+        background-color: paleturquoise;
+        color: palevioletred;
+        a {
+            display: block;
+            text-decoration: none;
+            color: palevioletred;
+            &.closeMenu {
+                display: none;
             }
         }
-        // to stick with the use pattern the menus will open on click
-        // and not on hover
+        &:target {
+            .sub-menu {
+                max-height: 1000px;
+            }
+            a.openMenu {
+                display: none;
+            }
+            a.closeMenu {
+                display: block;
+            }
+        }
+        @media #{$medium-up} {
+            &:hover {
+                .sub-menu{
+                    max-height: 1000px;
+                }
+            }
+        }
+    }
+    .sub-menu {
+        @media #{$medium-up} {
+            position: absolute;
+            width: 100%;
+        }
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s;
     }
 }
