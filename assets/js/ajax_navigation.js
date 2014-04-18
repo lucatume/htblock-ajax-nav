@@ -198,6 +198,93 @@
     });
     return !d(o, "transform") && o.adj ? i() : j = d(o, "animation"), h
 });
+(function($) {
+    var g, i = !0,
+        r = !1,
+        m = window.location,
+        h = Array.prototype.slice,
+        b = m.href.match(/^((https?:\/\/.*?\/)?[^#]*)#?.*$/),
+        u = b[1] + "#",
+        t = b[2],
+        e, l, f, q, c, j, x = "elemUrlAttr",
+        k = "href",
+        y = "src",
+        p = "urlInternal",
+        d = "urlExternal",
+        n = "urlFragment",
+        a, s = {};
+
+    function w(A) {
+        var z = h.call(arguments, 1);
+        return function() {
+            return A.apply(this, z.concat(h.call(arguments)))
+        }
+    }
+    $.isUrlInternal = q = function(z) {
+        if (!z || j(z)) {
+            return g
+        }
+        if (a.test(z)) {
+            return i
+        }
+        if (/^(?:https?:)?\/\//i.test(z)) {
+            return r
+        }
+        if (/^[a-z\d.-]+:/i.test(z)) {
+            return g
+        }
+        return i
+    };
+    $.isUrlExternal = c = function(z) {
+        var A = q(z);
+        return typeof A === "boolean" ? !A : A
+    };
+    $.isUrlFragment = j = function(z) {
+        var A = (z || "").match(/^([^#]?)([^#]*#).*$/);
+        return !!A && (A[2] === "#" || z.indexOf(u) === 0 || (A[1] === "/" ? t + A[2] === u : !/^https?:\/\//i.test(z) && $('<a href="' + z + '"/>')[0].href.indexOf(u) === 0))
+    };
+
+    function v(A, z) {
+        return this.filter(":" + A + (z ? "(" + z + ")" : ""))
+    }
+    $.fn[p] = w(v, p);
+    $.fn[d] = w(v, d);
+    $.fn[n] = w(v, n);
+
+    function o(D, C, B, A) {
+        var z = A[3] || e()[(C.nodeName || "").toLowerCase()] || "";
+        return z ? !! D(C.getAttribute(z)) : r
+    }
+    $.expr[":"][p] = w(o, q);
+    $.expr[":"][d] = w(o, c);
+    $.expr[":"][n] = w(o, j);
+    $[x] || ($[x] = function(z) {
+        return $.extend(s, z)
+    })({
+        a: k,
+        base: k,
+        iframe: y,
+        img: y,
+        input: y,
+        form: "action",
+        link: k,
+        script: y
+    });
+    e = $[x];
+    $.urlInternalHost = l = function(B) {
+        B = B ? "(?:(?:" + Array.prototype.join.call(arguments, "|") + ")\\.)?" : "";
+        var A = new RegExp("^" + B + "(.*)", "i"),
+            z = "^(?:" + m.protocol + ")?//" + m.hostname.replace(A, B + "$1").replace(/\\?\./g, "\\.") + (m.port ? ":" + m.port : "") + "/";
+        return f(z)
+    };
+    $.urlInternalRegExp = f = function(z) {
+        if (z) {
+            a = typeof z === "string" ? new RegExp(z, "i") : z
+        }
+        return a
+    };
+    l("www")
+})(jQuery);
 /**
  * AJAX Navigation Block
  * http://theaveragedev.com
@@ -208,8 +295,9 @@
 
 jQuery(document).ready(function($) {
     // cache the content area that will be filled with content
+    // :urlInternal selector from Ben Alman's urlInternal jQuery library
     var $contentArea = $('.theContent.block-type-content .block-content'),
-        $anchors = $('.menu-ajax a:not(.openMenu,.closeMenu)');
+        $anchors = $('.menu-ajax a:not(.openMenu,.closeMenu)').filter(':urlInternal');
     // all the anchor tags save for the ones used in the menu
     // should pull content via AJAX
     $anchors.on('click', function(ev) {
@@ -217,13 +305,13 @@ jQuery(document).ready(function($) {
         var $this = $(this),
             url = '',
             spinner = new Spinner().spin();
-        // set the spinner
-        spinner.el.style.top = '50%';
-        spinner.el.style.left = '50%';
         // do not follow the link
         ev.preventDefault();
         // get the linked url
         url = $this.attr('href');
+        // set the spinner
+        spinner.el.style.top = '50%';
+        spinner.el.style.left = '50%';
         // fade the content area and append the spinner in its place
         $contentArea.fadeOut().parent().append(spinner.el);
         // spinner = new Spinner().spin($contentArea.)
