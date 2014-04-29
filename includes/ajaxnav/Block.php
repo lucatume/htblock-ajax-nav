@@ -25,7 +25,7 @@ class Block extends \HeadwayBlockAPI {
     {
         $handle = 'ajaxnav';
         $src = Script::suffix(AJAXNAV_URL . 'assets/js/ajax_navigation.js');
-        $deps = array('jquery');
+        $deps = array('jquery', 'jquery-ajaxify');
         wp_enqueue_script($handle, $src, $deps);
     }
 
