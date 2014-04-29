@@ -142,7 +142,7 @@ module.exports = function(grunt) {
                 src: ['**/*'],
                 dest: 'ajax_navigation/'
             }
-        },
+        }
     });
 
     // Load other tasks
