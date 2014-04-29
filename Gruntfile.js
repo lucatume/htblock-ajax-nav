@@ -142,7 +142,7 @@ module.exports = function(grunt) {
                 src: ['**/*'],
                 dest: 'ajax_navigation/'
             }
-        }
+        },
     });
 
     // Load other tasks
@@ -160,8 +160,6 @@ module.exports = function(grunt) {
     // Default task.
 
     grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'sass', 'autoprefixer', 'cssmin']);
-
-
     grunt.registerTask('build', ['default', 'clean', 'copy', 'compress']);
 
     grunt.util.linefeed = '\n';
