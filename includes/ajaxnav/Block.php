@@ -32,10 +32,12 @@ class Block extends \HeadwayBlockAPI {
         if ($original_block) {
             $block = $original_block;
         }
-        // settings for the block will be stored in the $settings->data key/value
-        // array
+        // print the options object to the page
         $settings = new Settings($block);
-        wp_localize_script($handle, 'ajaxNavMenuOptions', $settings->data);
+        if (!$settings->data) {
+            return;
+        }
+        $settingsObject = JsObject::on($settings->data)->localize($handle, 'ajaxNavMenuOptions');
     }
 
 
