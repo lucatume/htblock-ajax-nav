@@ -37,7 +37,7 @@ class Block extends \HeadwayBlockAPI {
         if (!$settings->data) {
             return;
         }
-        $settingsObject = JsObject::on($settings->data)->localize($handle, 'ajaxNavMenuOptions');
+        JsObject::on($settings->data)->localize($handle, 'ajaxNavMenuOptions');
     }
 
 
