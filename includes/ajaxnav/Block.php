@@ -4,6 +4,7 @@ namespace ajaxnav;
 use ajaxnav\AJAXNavMenu;
 use tad\wrappers\headway\BlockSettings as Settings;
 use tad\utils\Script;
+use tad\utils\JsObject;
 
 class Block extends \HeadwayBlockAPI {
 
