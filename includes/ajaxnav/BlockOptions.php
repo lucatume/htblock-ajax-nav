@@ -20,11 +20,11 @@ namespace ajaxnav;
                 'selectors-notice' => array(
                     'type' => 'notice',
                     'name' => 'selectors-notice',
-                    'notice' => 'Use jQuery selector syntax here, e.g. "#someSelector > .someOtherSelector"'
+                    'notice' => 'Use jQuery selectors syntax here, e.g. "#someSelector > .someOtherSelector"'
                     ),
 
                 'load_from_selector' => array(
-                    'type' => 'text',
+                    'type' => 'textarea',
                     'name' => 'load_from_selector',
                     'label' => 'loadFrom selector',
                     'tooltip' => 'This selector and its content will be loaded in the destination.',
@@ -32,17 +32,17 @@ namespace ajaxnav;
                 ),
 
                 'load_to_selector' => array(
-                    'type' => 'text',
+                    'type' => 'textarea',
                     'name' => 'load_to_selector',
                     'label' => 'loadTo selector',
                     'tooltip' => 'This selector will have its content replaced with the new one.',
                     'default' => '.block-type-content'
                 ),
                 'exclude_selector' => array(
-                    'type' => 'text',
+                    'type' => 'textarea',
                     'name' => 'exclude_selector',
-                    'label' => 'Anchor tags matching this selector will not AJAX-powered and will fallback to default behavior.',
-                    'tooltip' => 'Use jQuery selector syntax here.',
+                    'label' => 'exclude selector',
+                    'tooltip' => 'Anchor tags matching this selector will not be AJAX-powered and will fallback to default behavior.',
                     'default' => ''
                 ),
 
