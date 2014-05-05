@@ -38,6 +38,14 @@ class Block extends \HeadwayBlockAPI {
             return;
         }
         JsObject::on($settings->data)->localize($handle, 'ajaxNavMenuOptions');
+        // maybe queue the default style, default to true
+        $queueDefaultStyle = Settings::on($block)->queueDefaultStyle || true;
+        if ($queueDefaultStyle) {
+            wp_enqueue_style( 
+                'ajaxnav', 
+                AJAXNAV_URL . 'assets/css/ajax_navigation.css'
+                );
+        }
     }
 
 

@@ -1,6 +1,7 @@
 <?php
 namespace ajaxnav;
 
+use tad\wrappers\headway\BlockSettings;
 use tad\adapters\Functions;
 
 class AJAXNavMenu
@@ -24,12 +25,6 @@ class AJAXNavMenu
     }
     public function show()
     {
-        // enqueue the style for the menu
-        wp_enqueue_style( 
-            'ajaxnav', 
-            AJAXNAV_URL . 'assets/css/ajax_navigation.css'
-            );
-
         $args = array(
             'theme_location' => $this->themeLocation,
             'menu' => '',
