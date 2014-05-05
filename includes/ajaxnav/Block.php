@@ -38,9 +38,9 @@ class Block extends \HeadwayBlockAPI {
             return;
         }
         JsObject::on($settings->data)->localize($handle, 'ajaxNavMenuOptions');
-        // maybe queue the default style, default to true
-        $queueDefaultStyle = Settings::on($block)->queueDefaultStyle || true;
-        if ($queueDefaultStyle) {
+        // maybe queue the default style, defaults to true
+        $queueDefaultStyle = Settings::on($block)->queueDefaultStyle;
+        if (is_null($queueDefaultStyle) or filter_var($queueDefaultStyle, FILTER_VALIDATE_BOOLEAN)) {
             wp_enqueue_style( 
                 'ajaxnav', 
                 AJAXNAV_URL . 'assets/css/ajax_navigation.css'
