@@ -1,4 +1,4 @@
-/*global jQuery, $, document, console, Spinner*/
+/*global jQuery, $, document, ajaxNavMenuOptions*/
 /**
  * AJAX Navigation Block
  * http://theaveragedev.com
@@ -8,8 +8,10 @@
  */
 
 jQuery(document).ready(function($) {
-    $('.menu-ajax').ajaxify({
-        loadToSelector: '.theContent',
-        loadFromSelector: '.block-type-content .block-content'
-    });
+    // by default call the jQuery.plugin using the content block
+    var options = ajaxNavMenuOptions || {
+        loadToSelector: '.block-type-content',
+        loadFromSelector: '.block-content'
+    };
+    $('.menu-ajax').ajaxify(options);
 });
