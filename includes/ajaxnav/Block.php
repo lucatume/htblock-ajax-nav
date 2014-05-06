@@ -37,7 +37,8 @@ class Block extends \HeadwayBlockAPI {
         if (!$settings->data) {
             return;
         }
-        JsObject::on($settings->data)->localize($handle, 'ajaxNavMenuOptions');
+        $objectName = 'ajaxNavMenuOptions' . $block_id;
+        JsObject::on($settings->data)->localize($handle, $objectName);
         // maybe queue the default style, defaults to true
         $queueDefaultStyle = Settings::on($block)->queueDefaultStyle;
         if (is_null($queueDefaultStyle) or filter_var($queueDefaultStyle, FILTER_VALIDATE_BOOLEAN)) {
