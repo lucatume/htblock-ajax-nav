@@ -77,6 +77,16 @@ class Block extends \HeadwayBlockAPI {
 
     public function content($block) {
         $themeLocation = 'navigation_block_' . $block['id'];
+        // add a filter to the 'wp_nav_menu' to append the 'data-block-id'
+        // attribute
+        $id = $block['id'];
+        $f = function($html) use($id) {
+            $repl = sprintf('$1 data-block-id="%d"', $id);
+            return preg_replace("/(<div\\s+class\\s*=\\s*\"menu-ajax\")/uis", $repl, $html);
+        };
+        add_filter('wp_nav_menu', $f);
         AJAXNavMenu::on($themeLocation)->show();
+        // remove the filter
+        remove_filter('wp_nav_menu', $f);
     }
 }
