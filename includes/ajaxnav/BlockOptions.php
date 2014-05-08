@@ -108,7 +108,14 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 'name' => 'queue_default_style',
                 'label' => 'Use default menu style',
                 'default' => 'true'
+                ),
+            'css_menu' => array(
+                'type' => 'checkbox',
+                'name' => 'css_menu',
+                'label' => 'Generate a CSS animatable menu',
+                'tooltip' => 'Animation is done via CSS and not JS, using JS later might prove difficult.',
+                'default' => 'false'
                 )
             )
-);
+    );
 }
