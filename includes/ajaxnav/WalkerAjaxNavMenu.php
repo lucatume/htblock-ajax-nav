@@ -31,16 +31,23 @@ if (class_exists('Walker_Nav_Menu')) {
             $indent = str_repeat("\t", $depth);
             // if it is a container item
             if ($item->url == '') {
-                $groupId = 'g-' . $item->ID;
                 $groupName = $item->title;
-                $output .= sprintf('%s<div class="menu-item" id="%s">', $indent, $groupId);
-                $output .= sprintf('%s<a href="#%s" class="openMenu">%s</a>', $indent . $indent, $groupId, $groupName);
-                $output .= sprintf('%s<a href="#" class="closeMenu">%s</a>', $indent . $indent, $groupName);
+                if (!empty($this->settings->cssMenu)) {
+                    // if the theme developer wants to print a CSS-ready menu
+                    $groupId = 'g-' . $item->ID;
+                    $output .= sprintf('%s<div class="menu-item" id="%s">', $indent, $groupId);
+                    $output .= sprintf('%s<a href="#%s" class="openMenu">%s</a>', $indent . $indent, $groupId, $groupName);
+                    $output .= sprintf('%s<a href="#" class="closeMenu">%s</a>', $indent . $indent, $groupName);
+                } else {
+                    // if the theme developer wishes to print a plain simple menu
+                    $output .= sprintf('%s<div class="menu-item">', $indent);
+                    $output .= sprintf('%s<span>%s</span>', $indent . $indent, $groupName);
+                }
             } else {
                 // it's an element that actually links to something
                 // get the linked post ID from the url
                 $matches = array();
-                preg_match("/\\?(page_id|p)=(\\d*)/uim", $item->url, &$matches);
+                preg_match("/\\?(page_id|p)=(\\d*)/uim", $item->url, $matches);
                 $dataPostId = '';
                 if (isset($matches[2])) {
                     $dataPostId = sprintf('data-post-id="%s"', $matches[2]);
