@@ -85,7 +85,7 @@ class Block extends \HeadwayBlockAPI {
             return preg_replace("/(<div\\s+class\\s*=\\s*\"menu-ajax\")/uis", $repl, $html);
         };
         add_filter('wp_nav_menu', $f);
-        AJAXNavMenu::on($themeLocation)->show();
+        AJAXNavMenu::on($themeLocation, $block)->show();
         // remove the filter
         remove_filter('wp_nav_menu', $f);
     }
