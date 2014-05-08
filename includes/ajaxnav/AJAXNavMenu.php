@@ -8,7 +8,7 @@ class AJAXNavMenu
 {
     protected $functions;
 
-    public function __construct($themeLocation = '', \tad\interfaces\FunctionsAdapter $functions = null)
+    public function __construct($themeLocation = '', $block = null, \tad\interfaces\FunctionsAdapter $functions = null)
     {
         if (!is_string($themeLocation)) {
             throw new \BadMethodCallException("Theme location must be a string.", 1);
@@ -18,10 +18,13 @@ class AJAXNavMenu
         }
         $this->functions = $functions;
         $this->themeLocation = $themeLocation;
+        if ($block) {
+            $this->block = $block;
+        }
     }
-    public static function on($themeLocation = '')
+    public static function on($themeLocation = '', $block = null)
     {
-        return new self($themeLocation);
+        return new self($themeLocation, $block);
     }
     public function show()
     {
@@ -41,7 +44,7 @@ class AJAXNavMenu
             'link_after' => '',
             'items_wrap' => '<div class = "menu-ajax">%3$s</div>',
             'depth' => 2,
-            'walker' => new \ajaxnav\WalkerAjaxNavMenu()
+            'walker' => new \ajaxnav\WalkerAjaxNavMenu($this->block)
             );
 
         $this->functions->wp_nav_menu( $args );
