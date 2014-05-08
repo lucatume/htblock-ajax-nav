@@ -1,9 +1,19 @@
 <?php
 namespace ajaxnav;
 
+use tad\wrappers\headway\BlockSettings as Settings;
+
 if (class_exists('Walker_Nav_Menu')) {
     class WalkerAjaxNavMenu extends \Walker_Nav_Menu
     {
+        private $settings;
+
+        public function __construct($block)
+        {
+            if ($block) {
+                $settings = Settings::on($block);
+            }
+        }
         public function start_lvl(&$output, $depth = 0, $args = array())
         {
             $indent = str_repeat("\t", $depth);
