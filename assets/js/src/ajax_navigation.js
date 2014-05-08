@@ -1,4 +1,4 @@
-/*global jQuery, $, window, document, ajaxNavMenuOptions*/
+/*global console, jQuery, $, window, document, ajaxNavMenuOptions, Modernizr*/
 /**
  * AJAX Navigation Block
  * http://theaveragedev.com
@@ -11,7 +11,8 @@ jQuery(document).ready(function($) {
     // create a default options object
     var defaults = {
         loadFromSelector: '.block-type-content .block-content',
-        loadToSelector: '.block-type-content'
+        loadToSelector: '.block-type-content',
+        excludeSelector: 'a[href^="#"]'
     }, menu = $('.menu-ajax');
     // bootstrap the plugin on the block 
     menu.each(function() {

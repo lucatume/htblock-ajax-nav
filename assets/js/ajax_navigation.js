@@ -297,7 +297,8 @@ jQuery(document).ready(function($) {
     // create a default options object
     var defaults = {
         loadFromSelector: '.block-type-content .block-content',
-        loadToSelector: '.block-type-content'
+        loadToSelector: '.block-type-content',
+        excludeSelector: 'a[href^="#"]'
     }, menu = $('.menu-ajax');
     // bootstrap the plugin on the block 
     menu.each(function() {
