@@ -17,7 +17,7 @@ class AJAXNavMenu
         }
         $this->functions = $functions;
         $this->themeLocation = $themeLocation;
-        if ($block) {
+        if (!empty($block)) {
             $this->block = $block;
         }
     }
