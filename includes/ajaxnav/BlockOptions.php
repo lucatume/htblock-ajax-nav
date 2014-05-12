@@ -5,7 +5,8 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
 
     public $tabs = array(
         'ajaxify-settings' => 'AJAX Settings',
-        'style-settings' => 'Styling'
+        'style-settings' => 'Styling',
+        'markup-settings' => 'Output markup'
         );
 
     public $inputs = array(
@@ -108,7 +109,9 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 'name' => 'queue_default_style',
                 'label' => 'Use default menu style',
                 'default' => 'true'
-                ),
+                )
+            ),
+        'markup-settings' => array(
             'css_menu' => array(
                 'type' => 'checkbox',
                 'name' => 'css_menu',
