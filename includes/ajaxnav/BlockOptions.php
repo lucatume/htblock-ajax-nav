@@ -47,7 +47,6 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 'tooltip' => 'Anchor tags matching this selector will not be AJAX-powered and will fallback to default behavior.',
                 'default' => ''
                 ),
-
             'callbacks-title' => array(
                 'type' => 'heading',
                 'name' => 'callbacks-title',
@@ -114,8 +113,39 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 'label' => 'noAjaxAnchorClicked callback function',
                 'tooltip' => 'An internal link explicitly excluded (see above) has been clicked.',
                 'default' => 'function(evt){}'
-                )
-            ),
+                ),
+            'events-title' => array(
+                'type' => 'heading',
+                'name' => 'events-title',
+                'label' => 'Events'
+                ),
+
+            'events-notice' => array(
+                'type' => 'notice',
+                'name' => 'events-notice',
+                'notice' => 'The block can raise events on the <code>.menu-ajax</code> object if you so choose.
+                The events the block will raise are:
+                <ul>
+                    <li><str>ajaxAnchorClicked</str> - raised any time an internal and not excluded link is clicked</li>
+                    <li><str>beforeLoad</str> - raised before attempting to load new content into the page</li>
+                    <li><str>afterLoad</str> - raised after new content has been successflily loaded into the page</li>
+                    <li><str>afterFail</str> - raised when loading of new content has failed</li>
+                    <li><str>externalAnchorClicked</str> - raised any time an anchor tag linking to an external resource is clicked</li>
+                    <li><str>excludedClicked</str> - raised any time an anchor tag excluded from <em>ajaxification</em> is clicked</li>
+                </ul>
+                '
+                ),
+'raise_events' => array(
+    'type' => 'checkbox',
+    'name' => 'raise_events',
+    'label' => 'Raise events',
+    'default' => 'true',
+    'toggle' => array(
+        'true' => array('show'=>array('#input-events_description')),
+        'false' => array('hide'=>array('#input-events_description'))
+        )
+    )
+),
 'style-settings' => array(
     'queue_default_style' => array(
         'type' => 'checkbox',
@@ -135,3 +165,4 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
     )
 );
 }
+?>
