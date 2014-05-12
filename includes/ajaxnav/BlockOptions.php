@@ -59,7 +59,20 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 'name' => 'callbacks-notice',
                 'notice' => 'The block will allow callback functions to be called during its execution. Use JavaScript syntax here, jQuery is available'
                 ),
-
+            'use_callbacks'  => array(
+                'type' => 'checkbox',
+                'name' => 'use_callbacks',
+                'label' => 'Use callback functions',
+                'default' => 'true',
+                'toggle' => array(
+                    'true' => array(
+                        'show' => array('#input-before_load', '#input-after_load', '#input-after_fail', '#input-ajax_anchor_clicked', '#input-external_anchor_clicked', '#input-excluded_clicked')
+                        ),
+                    'false' => array(
+                        'hide' => array('#input-before_load', '#input-after_load', '#input-after_fail', '#input-ajax_anchor_clicked', '#input-external_anchor_clicked', '#input-excluded_clicked')
+                        )
+                    )
+                ),
             'before_load' => array(
                 'type' => 'textarea',
                 'name' => 'before_load',
@@ -95,30 +108,30 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 'tooltip' => 'An external link has been clicked.',
                 'default' => 'function(evt){}'
                 ),
-            'no_ajax_anchor_clicked' => array(
+            'excluded_clicked' => array(
                 'type' => 'textarea',
-                'name' => 'no_ajax_anchor_clicked',
+                'name' => 'excluded_clicked',
                 'label' => 'noAjaxAnchorClicked callback function',
                 'tooltip' => 'An internal link explicitly excluded (see above) has been clicked.',
                 'default' => 'function(evt){}'
-                ),
-            ),
-        'style-settings' => array(
-            'queue_default_style' => array(
-                'type' => 'checkbox',
-                'name' => 'queue_default_style',
-                'label' => 'Use default menu style',
-                'default' => 'true'
                 )
             ),
-        'markup-settings' => array(
-            'css_menu' => array(
-                'type' => 'checkbox',
-                'name' => 'css_menu',
-                'label' => 'Generate a CSS animatable menu',
-                'tooltip' => 'Animation is done via CSS and not JS, using JS later might prove difficult.',
-                'default' => 'false'
-                )
+'style-settings' => array(
+    'queue_default_style' => array(
+        'type' => 'checkbox',
+        'name' => 'queue_default_style',
+        'label' => 'Use default menu style',
+        'default' => 'true'
+        ),
+    'markup-settings' => array(
+        'css_menu' => array(
+            'type' => 'checkbox',
+            'name' => 'css_menu',
+            'label' => 'Generate a CSS animatable menu',
+            'tooltip' => 'Animation is done via CSS and not JS, using JS later might prove difficult.',
+            'default' => 'false'
             )
-    );
+        )
+    )
+);
 }
