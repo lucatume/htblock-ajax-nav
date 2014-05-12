@@ -1,7 +1,6 @@
 <?php
 namespace ajaxnav;
 
-use tad\wrappers\headway\BlockSettings;
 use tad\adapters\Functions;
 
 class AJAXNavMenu
