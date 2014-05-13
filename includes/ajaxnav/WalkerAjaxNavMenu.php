@@ -49,19 +49,25 @@ if (class_exists('Walker_Nav_Menu')) {
                 $jsonItemAttribute = sprintf('data-item=\'%s\'', $out);
             }
             $indent = str_repeat("\t", $depth);
+            // set the title and maybe wrap it
+                $title = $item->title;
+                if ($this->settings->wrapTitle) {
+                    $titleWrapperClasses = implode(' ', explode(',', $this->settings->wrapTitleClasses));
+                    $title = sprintf('<span class="%s">%s</span>', $titleWrapperClasses, $item->title);
+                }
+
             // if it is a container item
             if ($item->url == '') {
-                $groupName = $item->title;
                 if (!empty($this->settings->cssMenu)) {
                     // if the theme developer wants to print a CSS-ready menu
                     $groupId = 'g-' . $item->ID;
                     $output .= sprintf('%s<div class="menu-item" id="%s">', $indent, $groupId);
-                    $output .= sprintf('%s<a href="#%s" class="openMenu">%s</a>', $indent . $indent, $groupId, $groupName);
-                    $output .= sprintf('%s<a href="#" class="closeMenu">%s</a>', $indent . $indent, $groupName);
+                    $output .= sprintf('%s<a href="#%s" class="openMenu">%s</a>', $indent . $indent, $groupId, $title);
+                    $output .= sprintf('%s<a href="#" class="closeMenu">%s</a>', $indent . $indent, $title);
                 } else {
                     // if the theme developer wishes to print a plain simple menu
                     $output .= sprintf('%s<div class="menu-item">', $indent);
-                    $output .= sprintf('%s<span>%s</span>', $indent . $indent, $groupName);
+                    $output .= sprintf('%s<span>%s</span>', $indent . $indent, $title);
                 }
             } else {
                 // it's an element that actually links to something
@@ -72,7 +78,7 @@ if (class_exists('Walker_Nav_Menu')) {
                 if (isset($matches[2])) {
                     $dataPostId = sprintf('data-post-id="%s"', $matches[2]);
                 }
-                $output .= sprintf('%s<div class="menu-item" %s %s><a href="%s">%s</a>', $indent, $dataPostId, $jsonItemAttribute, $item->url, $item->title);
+                $output .= sprintf('%s<div class="menu-item" %s %s><a href="%s">%s</a>', $indent, $dataPostId, $jsonItemAttribute, $item->url, $title);
             }
         }
 
