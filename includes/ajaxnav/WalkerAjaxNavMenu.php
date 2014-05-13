@@ -55,12 +55,12 @@ if (class_exists('Walker_Nav_Menu')) {
                 if (!empty($this->settings->cssMenu)) {
                     // if the theme developer wants to print a CSS-ready menu
                     $groupId = 'g-' . $item->ID;
-                    $output .= sprintf('%s<div class="menu-item" id="%s" %s>', $indent, $groupId, $jsonItemAttribute);
+                    $output .= sprintf('%s<div class="menu-item" id="%s">', $indent, $groupId);
                     $output .= sprintf('%s<a href="#%s" class="openMenu">%s</a>', $indent . $indent, $groupId, $groupName);
                     $output .= sprintf('%s<a href="#" class="closeMenu">%s</a>', $indent . $indent, $groupName);
                 } else {
                     // if the theme developer wishes to print a plain simple menu
-                    $output .= sprintf('%s<div class="menu-item" %s>', $indent, $jsonItemAttribute);
+                    $output .= sprintf('%s<div class="menu-item">', $indent);
                     $output .= sprintf('%s<span>%s</span>', $indent . $indent, $groupName);
                 }
             } else {
