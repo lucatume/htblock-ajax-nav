@@ -29,7 +29,7 @@ if (class_exists('Walker_Nav_Menu')) {
 
         public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
         {
-            // if the developer so wishes the json version of the item object can be
+            // if the developer so wishes a JSON version of the item can be
             // attached to the menu item itself
             $jsonItemAttribute = '';
             if ($this->settings->attachJsonItem) {
@@ -45,7 +45,6 @@ if (class_exists('Walker_Nav_Menu')) {
                         }
                     }
                 }
-                var_dump($values);
                 $out = json_encode($values);
                 $jsonItemAttribute = sprintf('data-item=\'%s\'', $out);
             }
@@ -73,7 +72,7 @@ if (class_exists('Walker_Nav_Menu')) {
                 if (isset($matches[2])) {
                     $dataPostId = sprintf('data-post-id="%s"', $matches[2]);
                 }
-                $output .= sprintf('%s<div class="menu-item" %s><a href="%s">%s</a>', $indent, $dataPostId, $item->url, $item->title);
+                $output .= sprintf('%s<div class="menu-item" %s %s><a href="%s">%s</a>', $indent, $dataPostId, $jsonItemAttribute, $item->url, $item->title);
             }
         }
 
