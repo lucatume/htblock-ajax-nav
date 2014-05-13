@@ -136,60 +136,77 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 </ul>
                 '
                 ),
-'raise_events' => array(
-    'type' => 'checkbox',
-    'name' => 'raise_events',
-    'label' => 'Raise events',
-    'default' => 'true',
-    'toggle' => array(
-        'true' => array('show'=>array('#input-events_description')),
-        'false' => array('hide'=>array('#input-events_description'))
-        )
-    )
-),
-'style-settings' => array(
-    'queue_default_style' => array(
-        'type' => 'checkbox',
-        'name' => 'queue_default_style',
-        'label' => 'Use default menu style',
-        'default' => 'true'
-        ),
-    'markup-settings' => array(
-        'css_menu' => array(
-            'type' => 'checkbox',
-            'name' => 'css_menu',
-            'label' => 'Generate a CSS animatable menu',
-            'tooltip' => 'Animation is done via CSS and not JS, using JS later might prove difficult.',
-            'default' => 'false'
-            )
-        )
-    ),
-'data-settings' => array(
-    'attach_json_item' => array(
-        'type' => 'checkbox',
-        'name' => 'attach_json_item',
-        'default' => 'false',
-        'label' => 'Attach JSON encoded item to the menu-item element',
-        'toggle' => array(
-            'true' =>array('show'=>array('#input-json_item_keys')),
-            'false' => array('hide' => array('#input-json_item_keys'))
-            )
-        ),
-    'json_item_keys' => array(
-        'type' => 'textarea',
-        'name' => 'json_item_keys',
-        'default' => '',
-        'label' => 'Keys',
-        'tooltip' => 'A comma separated list of properties to attach to the data-item attribute'
-        ),
-'json-item-keys-notice' => array(
-    'type' => 'notice',
-    'name' => 'json-item-keys-notice',
-    'notice' => 'Here are the keys that can be attached to a menu item:
-    \'ID\', \'post_author\', \'post_date\', \'post_date_gmt\', \'post_content\', \'post_title\', \'post_excerpt\'post_status\', \'comment_status\', \'ping_status\', \'post_password\'post_name\', \'to_ping\', \'pinged\', \'post_modified\', \'post_modified_gmt\', \'post_content_filtered\', \'post_parent\', \'guid\', \'menu_order\', \'post_type\', \'post_mime_type\', \'comment_count\', \'filter\', \'db_id\', \'menu_item_parent\', \'object_id\', \'object\', \'type\', \'type_label\', \'url\', \'title\', \'target\', \'attr_title\', \'description\', \'classes\', \'xfn\', \'current\', \'current_item_ancestor\', \'current_item_parent\''
-    )
-    ),
+            'raise_events' => array(
+                'type' => 'checkbox',
+                'name' => 'raise_events',
+                'label' => 'Raise events',
+                'default' => 'true',
+                'toggle' => array(
+                    'true' => array('show'=>array('#input-events_description')),
+                    'false' => array('hide'=>array('#input-events_description'))
+                    )
+                )
+            ),
+            'style-settings' => array(
+                'queue_default_style' => array(
+                    'type' => 'checkbox',
+                    'name' => 'queue_default_style',
+                    'label' => 'Use default menu style',
+                    'default' => 'true'
+                    )
+                ),
+            'markup-settings' => array(
+                'css_menu' => array(
+                    'type' => 'checkbox',
+                    'name' => 'css_menu',
+                    'label' => 'Generate a CSS animatable menu',
+                    'tooltip' => 'Animation is done via CSS and not JS, using JS later might prove difficult.',
+                    'default' => 'false'
+                    ),
+                'wrap_title' => array(
+                    'type' => 'checkbox',
+                    'name' => 'wrap_title',
+                    'default' => 'false',
+                    'label' => 'Wrap menu items title in span',
+                    'toggle' => array(
+                        'true' => array('show' => array('#input-wrap_title_classes')),
+                        'false' => array('hide' => array('#input-wrap_title_classes'))
+                        )
+                    ),
+                'wrap_title_classes' => array(
+                    'type' => 'text',
+                    'name' => 'wrap_title_classes',
+                    'default' => 'title',
+                    'label' => 'Wrapper classes',
+                    'tooltip' => 'Comma separated list of classes for the title wrapper'
+                        )
+                ),
+            'data-settings' => array(
+                'attach_json_item' => array(
+                    'type' => 'checkbox',
+                    'name' => 'attach_json_item',
+                    'default' => 'false',
+                    'label' => 'Attach JSON encoded item to the menu-item element',
+                    'toggle' => array(
+                        'true' =>array('show'=>array('#input-json_item_keys')),
+                        'false' => array('hide' => array('#input-json_item_keys'))
+                        )
+                    ),
+                'json_item_keys' => array(
+                    'type' => 'textarea',
+                    'name' => 'json_item_keys',
+                    'default' => '',
+                    'label' => 'Keys',
+                    'tooltip' => 'A comma separated list of properties to attach to the data-item attribute'
+                    ),
+                'json-item-keys-notice' => array(
+                    'type' => 'notice',
+                    'name' => 'json-item-keys-notice',
+                    'notice' => 'Here are the keys that can be attached to a menu item:
+                    \'ID\', \'post_author\', \'post_date\', \'post_date_gmt\', \'post_content\', \'post_title\', \'post_excerpt\'post_status\', \'comment_status\', \'ping_status\', \'post_password\'post_name\', \'to_ping\', \'pinged\', \'post_modified\', \'post_modified_gmt\', \'post_content_filtered\', \'post_parent\', \'guid\', \'menu_order\', \'post_type\', \'post_mime_type\', \'comment_count\', \'filter\', \'db_id\', \'menu_item_parent\', \'object_id\', \'object\', \'type\', \'type_label\', \'url\', \'title\', \'target\', \'attr_title\', \'description\', \'classes\', \'xfn\', \'current\', \'current_item_ancestor\', \'current_item_parent\''
+                    )
+                ),
 
-);
-}
-?>
+        );
+        }
+        ?>
