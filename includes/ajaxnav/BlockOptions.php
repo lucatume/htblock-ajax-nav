@@ -6,7 +6,8 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
     public $tabs = array(
         'ajaxify-settings' => 'AJAX Settings',
         'style-settings' => 'Styling',
-        'markup-settings' => 'Output markup'
+        'markup-settings' => 'Output markup',
+        'data-settings' => 'Data attributes'
         );
 
     public $inputs = array(
@@ -162,7 +163,33 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
             'default' => 'false'
             )
         )
+    ),
+'data-settings' => array(
+    'attach_json_item' => array(
+        'type' => 'checkbox',
+        'name' => 'attach_json_item',
+        'default' => 'false',
+        'label' => 'Attach JSON encoded item to the menu-item element',
+        'toggle' => array(
+            'true' =>array('show'=>array('#input-json_item_keys')),
+            'false' => array('hide' => array('#input-json_item_keys'))
+            )
+        ),
+    'json_item_keys' => array(
+        'type' => 'textarea',
+        'name' => 'json_item_keys',
+        'default' => '',
+        'label' => 'Keys',
+        'tooltip' => 'A comma separated list of properties to attach to the data-item attribute'
+        ),
+'json-item-keys-notice' => array(
+    'type' => 'notice',
+    'name' => 'json-item-keys-notice',
+    'notice' => 'Here are the keys that can be attached to a menu item:
+    \'ID\', \'post_author\', \'post_date\', \'post_date_gmt\', \'post_content\', \'post_title\', \'post_excerpt\'post_status\', \'comment_status\', \'ping_status\', \'post_password\'post_name\', \'to_ping\', \'pinged\', \'post_modified\', \'post_modified_gmt\', \'post_content_filtered\', \'post_parent\', \'guid\', \'menu_order\', \'post_type\', \'post_mime_type\', \'comment_count\', \'filter\', \'db_id\', \'menu_item_parent\', \'object_id\', \'object\', \'type\', \'type_label\', \'url\', \'title\', \'target\', \'attr_title\', \'description\', \'classes\', \'xfn\', \'current\', \'current_item_ancestor\', \'current_item_parent\''
     )
+    ),
+
 );
 }
 ?>

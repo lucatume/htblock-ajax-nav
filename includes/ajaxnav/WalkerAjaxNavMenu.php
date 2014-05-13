@@ -2,6 +2,7 @@
 namespace ajaxnav;
 
 use tad\wrappers\headway\BlockSettings as Settings;
+use brianhaveri\underscore as __;
 
 if (class_exists('Walker_Nav_Menu')) {
     class WalkerAjaxNavMenu extends \Walker_Nav_Menu
@@ -11,7 +12,7 @@ if (class_exists('Walker_Nav_Menu')) {
         public function __construct($block)
         {
             if ($block) {
-                $settings = Settings::on($block);
+                $this->settings = Settings::on($block);
             }
         }
         public function start_lvl(&$output, $depth = 0, $args = array())
@@ -28,6 +29,26 @@ if (class_exists('Walker_Nav_Menu')) {
 
         public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
         {
+            // if the developer so wishes the json version of the item object can be
+            // attached to the menu item itself
+            $jsonItemAttribute = '';
+            if ($this->settings->attachJsonItem) {
+                $values = array();
+                if (!$this->settings->jsonItemKeys) {
+                    // return all values
+                    $values = (array)$item;
+                } else {
+                    $jsonItemKeys = explode(',', $this->settings->jsonItemKeys);
+                    foreach ($item as $key => $value) {
+                        if (in_array($key, $jsonItemKeys)) {
+                            $values[$key] = $value;
+                        }
+                    }
+                }
+                var_dump($values);
+                $out = json_encode($values);
+                $jsonItemAttribute = sprintf('data-item=\'%s\'', $out);
+            }
             $indent = str_repeat("\t", $depth);
             // if it is a container item
             if ($item->url == '') {
@@ -35,12 +56,12 @@ if (class_exists('Walker_Nav_Menu')) {
                 if (!empty($this->settings->cssMenu)) {
                     // if the theme developer wants to print a CSS-ready menu
                     $groupId = 'g-' . $item->ID;
-                    $output .= sprintf('%s<div class="menu-item" id="%s">', $indent, $groupId);
+                    $output .= sprintf('%s<div class="menu-item" id="%s" %s>', $indent, $groupId, $jsonItemAttribute);
                     $output .= sprintf('%s<a href="#%s" class="openMenu">%s</a>', $indent . $indent, $groupId, $groupName);
                     $output .= sprintf('%s<a href="#" class="closeMenu">%s</a>', $indent . $indent, $groupName);
                 } else {
                     // if the theme developer wishes to print a plain simple menu
-                    $output .= sprintf('%s<div class="menu-item">', $indent);
+                    $output .= sprintf('%s<div class="menu-item" %s>', $indent, $jsonItemAttribute);
                     $output .= sprintf('%s<span>%s</span>', $indent . $indent, $groupName);
                 }
             } else {
