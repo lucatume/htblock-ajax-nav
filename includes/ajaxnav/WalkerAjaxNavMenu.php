@@ -33,19 +33,29 @@ if (class_exists('Walker_Nav_Menu')) {
             // attached to the menu item itself
             $jsonItemAttribute = '';
             if ($this->settings->attachJsonItem) {
+
+                $postType = $item->type;
+
+                // posts and pages will require more fetching
+                $toFetch = array('post_type');
+                if (in_array($postType, $toFetch)) {
+                    $postItem = get_post($item->object_id);
+                } else {
+                    $postItem = $item;
+                }
                 $values = array();
                 if (!$this->settings->jsonItemKeys) {
                     // return all values
-                    $values = (array)$item;
+                    $values = (array)$postItem;
                 } else {
                     $jsonItemKeys = explode(',', $this->settings->jsonItemKeys);
-                    foreach ($item as $key => $value) {
+                    foreach ($postItem as $key => $value) {
                         if (in_array($key, $jsonItemKeys)) {
                             $values[$key] = $value;
                         }
                     }
                 }
-                $out = json_encode($values);
+                $out = json_encode($values, JSON_HEX_QUOT);
                 $jsonItemAttribute = sprintf('data-item=\'%s\'', $out);
             }
             $indent = str_repeat("\t", $depth);
