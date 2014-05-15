@@ -60,7 +60,6 @@ if (class_exists('Walker_Nav_Menu')) {
                 $values = apply_filters('ajaxnav_menu_item_json_attribute_values', $values, $item->object_id);
                 $out = json_encode($values, JSON_HEX_QUOT);
                 $jsonItemAttribute = sprintf('data-item=\'%s\'', $out);
-                var_dump($jsonItemAttribute);
             }
             $indent = str_repeat("\t", $depth);
             // set the title and maybe wrap it
