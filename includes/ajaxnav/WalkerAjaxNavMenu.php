@@ -57,7 +57,7 @@ if (class_exists('Walker_Nav_Menu')) {
                     }
                 }
                 // add a filter here to allow for custom attribute appending
-                $values = apply_filters('ajaxnav_menu_item_json_attribute_values', $values, $item->object_id);
+                $values = apply_filters('ajaxnav_menu_item_json_attribute_values', $values, $item);
                 $out = json_encode($values, JSON_HEX_QUOT);
                 $jsonItemAttribute = sprintf('data-item=\'%s\'', $out);
             }
