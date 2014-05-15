@@ -35,6 +35,8 @@ if (class_exists('Walker_Nav_Menu')) {
             if ($this->settings->attachJsonItem) {
 
                 $postType = $item->type;
+                $postItem = null;
+                $values = array();
 
                 // posts and pages will require more fetching
                 $toFetch = array('post_type');
@@ -43,7 +45,6 @@ if (class_exists('Walker_Nav_Menu')) {
                 } else {
                     $postItem = $item;
                 }
-                $values = array();
                 if (!$this->settings->jsonItemKeys) {
                     // return all values
                     $values = (array)$postItem;
@@ -55,8 +56,11 @@ if (class_exists('Walker_Nav_Menu')) {
                         }
                     }
                 }
+                // add a filter here to allow for custom attribute appending
+                $values = apply_filters('ajaxnav_menu_item_json_attribute', $values, $item->object_id);
                 $out = json_encode($values, JSON_HEX_QUOT);
                 $jsonItemAttribute = sprintf('data-item=\'%s\'', $out);
+                var_dump($jsonItemAttribute);
             }
             $indent = str_repeat("\t", $depth);
             // set the title and maybe wrap it
