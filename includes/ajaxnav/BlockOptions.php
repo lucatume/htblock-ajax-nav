@@ -46,7 +46,7 @@ class BlockOptions extends \HeadwayBlockOptionsAPI {
                 'name' => 'exclude_selector',
                 'label' => 'exclude selector',
                 'tooltip' => 'Anchor tags matching this selector will not be AJAX-powered and will fallback to default behavior.',
-                'default' => ''
+                'default' => '.comment-reply-link, .cancel-comment-reply-link, .post-edit-link, .entry-comments'
                 ),
             'callbacks-title' => array(
                 'type' => 'heading',
