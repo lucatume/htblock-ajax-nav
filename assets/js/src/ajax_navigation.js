@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
     var defaults = {
         loadFromSelector: '.block-type-content .block-content',
         loadToSelector: '.block-type-content',
-        excludeSelector: 'a[href^="#"]'
+        excludeSelector: '.comment-reply-link, .cancel-comment-reply-link, .post-edit-link, .entry-comments'
     }, menu = $('.menu-ajax');
     // bootstrap the plugin on the block 
     menu.each(function() {
