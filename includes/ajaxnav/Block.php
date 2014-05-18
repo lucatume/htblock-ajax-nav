@@ -24,6 +24,11 @@ class Block extends \HeadwayBlockAPI {
 
     public static function enqueue_action($block_id, $block, $original_block = null)
     {
+        // print the options object to the page
+        $settings = new Settings($block);
+        if (!$settings->activateAjax) {
+            return;
+        }
         $handle = 'ajaxnav';
         $src = Script::suffix(AJAXNAV_URL . 'assets/js/ajax_navigation.js');
         $deps = array('jquery', 'jquery-ajaxify', 'breakpoints');
@@ -32,8 +37,6 @@ class Block extends \HeadwayBlockAPI {
         if ($original_block) {
             $block = $original_block;
         }
-        // print the options object to the page
-        $settings = new Settings($block);
         if (!$settings->data) {
             return;
         }
