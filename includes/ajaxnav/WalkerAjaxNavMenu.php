@@ -72,11 +72,12 @@ if (class_exists('Walker_Nav_Menu')) {
             // set the classes
             $classes = array('menu-item');
             if ($item->current) {
-                array_push($clases, 'current');
+                array_push($classes, 'current');
             }
             
             // allow hooking to modify classes
             $classes = apply_filters('ajaxnav_menu_item_classes', $classes, $item);
+            $classes = implode(' ', $classes);
             $indent = str_repeat("\t", $depth);
             
             // set the title and maybe wrap it
@@ -92,13 +93,13 @@ if (class_exists('Walker_Nav_Menu')) {
                     
                     // if the theme developer wants to print a CSS-ready menu
                     $groupId = 'g-' . $item->ID;
-                    $output.= sprintf('%s<div class="menu-item" id="%s">', $indent, $groupId);
+                    $output.= sprintf('%s<div class="%s" id="%s">', $indent, $classes, $groupId);
                     $output.= sprintf('%s<a href="#%s" class="openMenu">%s</a>', $indent . $indent, $groupId, $title);
                     $output.= sprintf('%s<a href="#" class="closeMenu">%s</a>', $indent . $indent, $title);
                 } else {
                     
                     // if the theme developer wishes to print a plain simple menu
-                    $output.= sprintf('%s<div class="menu-item">', $indent);
+                    $output.= sprintf('%s<div class="%s">', $indent, $classes);
                     $output.= sprintf('%s<span>%s</span>', $indent . $indent, $title);
                 }
             } else {
@@ -111,7 +112,7 @@ if (class_exists('Walker_Nav_Menu')) {
                 if (isset($matches[2])) {
                     $dataPostId = sprintf('data-post-id="%s"', $matches[2]);
                 }
-                $output.= sprintf('%s<div class="menu-item" %s %s><a href="%s">%s</a>', $indent, $dataPostId, $jsonItemAttribute, $item->url, $title);
+                $output.= sprintf('%s<div class="%s" %s %s><a href="%s">%s</a>', $indent, $classes, $dataPostId, $jsonItemAttribute, $item->url, $title);
             }
         }
         
