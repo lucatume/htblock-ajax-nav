@@ -5,6 +5,7 @@ namespace ajaxnav;
 
 use tad\wrappers\headway\BlockSettings as Settings;
 
+
 use brianhaveri\underscore as __;
 
 if (class_exists('Walker_Nav_Menu')) {
@@ -70,6 +71,9 @@ if (class_exists('Walker_Nav_Menu')) {
             
             // set the classes
             $classes = array('menu-item');
+            if ($item->current) {
+                array_push($clases, 'current');
+            }
             
             // allow hooking to modify classes
             $classes = apply_filters('ajaxnav_menu_item_classes', $classes, $item);
