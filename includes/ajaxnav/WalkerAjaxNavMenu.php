@@ -71,6 +71,8 @@ if (class_exists('Walker_Nav_Menu')) {
             
             // set the classes
             $classes = array('menu-item');
+            // filter the classes
+            $classes = apply_filters('ajaxnav_menu_item_classes', $classes, $item);
             if ($item->current) {
                 array_push($classes, 'current');
             }
