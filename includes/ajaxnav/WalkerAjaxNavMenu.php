@@ -5,7 +5,6 @@ namespace ajaxnav;
 
 use tad\wrappers\headway\BlockSettings as Settings;
 
-
 use brianhaveri\underscore as __;
 
 if (class_exists('Walker_Nav_Menu')) {
@@ -31,7 +30,7 @@ if (class_exists('Walker_Nav_Menu')) {
             $output.= "$indent</div>\n";
         }
         
-        public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+        public function start_el(&$output, $item, $depth = 0, $args = array() , $id = 0)
         {
             
             // if the developer so wishes a JSON version of the item can be
@@ -44,7 +43,9 @@ if (class_exists('Walker_Nav_Menu')) {
                 $values = array();
                 
                 // posts and pages will require more fetching
-                $toFetch = array('post_type');
+                $toFetch = array(
+                    'post_type'
+                );
                 if (in_array($postType, $toFetch)) {
                     $postItem = get_post($item->object_id);
                 } else {
@@ -70,15 +71,18 @@ if (class_exists('Walker_Nav_Menu')) {
             }
             
             // set the classes
-            $classes = array('menu-item');
-            // filter the classes
-            $classes = apply_filters('ajaxnav_menu_item_classes', $classes, $item);
+            $classes = array(
+                'menu-item'
+            );
             if ($item->current) {
-                array_push($classes, 'current');
+                $classes[] = 'current';
             }
             
-            // allow hooking to modify classes
+            // filter the classes
             $classes = apply_filters('ajaxnav_menu_item_classes', $classes, $item);
+            if (!$classes) {
+                $classes = array();
+            }
             $classes = implode(' ', $classes);
             $indent = str_repeat("\t", $depth);
             
